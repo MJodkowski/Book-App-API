@@ -1,10 +1,11 @@
 const jwt = require('jsonwebtoken'),
-User = require('../models/user');
+User = require('../models/user'),
+{ jwtKey } = require('../../config/config');
 
 module.exports = async (req, res, next) => {
-    const token = req.header('Authorization').replace('Bearer ', '');
+    const token = req.cookies.authToken;
     try {
-        if (!jwt.verify(token,'secret')) {
+        if (!jwt.verify(token, jwtKey)) {
             throw new Error();
         }
         const decodedToken = jwt.decode(token);
