@@ -10,13 +10,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.5",
+    "bcrypt": "^3.0.7",
     "cookie-parser": "^1.4.4",
     "csvtojson": "^2.0.8",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.2.2",
     "mongoose": "^5.4.20",
+    "node-gyp": "^6.0.1",
     "nodemon": "^1.18.10",
     "validator": "^10.11.0"
   }
