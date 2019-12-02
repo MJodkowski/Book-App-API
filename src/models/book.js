@@ -12,7 +12,18 @@ const Book = mongoose.model('Book', {
     },
     year: {
         type: Number
-    }
+    },
+    reviews: [{
+            author: {
+                type: String
+            },
+            rating: {
+                type: Number
+            },
+            contents: {
+                type: String
+            }
+        }]
 });
 
 module.exports = Book;
