@@ -49,7 +49,8 @@ router.post('/register', async (req, res) => {
     }
 });
 
-router.post('/authenticate',  auth, async (req, res) => {
+router.post('/authenticate', auth, async (req, res) => {
+
     try {
         res.send({ user: req.user });
     } catch (err) {
