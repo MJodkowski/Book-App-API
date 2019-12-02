@@ -3,11 +3,11 @@ cookieParser = require('cookie-parser'),
 userRoute = require('./routes/user'),
 bookRoute = require('./routes/book'),
 cors = require('cors'),
-constants = require('./utils/constants');
+{ CORS_WHITELIST } = require('./utils/constants');
 
 const corsOptions = {
   origin: (origin, callback)  => {
-    if (constants.CORS_WHITELIST.indexOf(origin) !== -1) {
+    if (CORS_WHITELIST.indexOf(origin) !== -1) {
       callback(null, true)
     } else {
       callback(new Error('Not allowed by CORS'))
