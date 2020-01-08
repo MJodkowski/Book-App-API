@@ -38,14 +38,12 @@ router.get('/reviews', auth, async (req, res) => {
     }
 })
 
-router.patch('/:id/review/:reviewId', auth, async (req, res) => {
+router.patch('/:title/reviews/:reviewId', auth, async (req, res) => {
     try {
         const book = await Book.findOne({ title: req.body.title });
-        book.reviews.push({
-            author: req.body.author,
-            rating: req.body.rating,
-            contents: req.body.contents
-        })
+        const review = book.reviews.find(review => review.id === req.body.reviewId);
+        review.rating = req.body.rating;
+        review.contents = req.body.contents;
         await book.save();
         res.send(book);
     } catch(err) {
