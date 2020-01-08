@@ -14,7 +14,7 @@ const corsOptions = {
     }
   },
   credentials: true,
-  methods: ['GET', 'PUT', 'POST'],
+  methods: ['GET', 'PUT', 'POST', 'PATCH'],
 };
 
 app = express();
