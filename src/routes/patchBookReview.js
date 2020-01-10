@@ -1,6 +1,6 @@
-const express = require("express"),
-  Book = require("../models/book"),
-  auth = require("../middleware/auth");
+import express from 'express';
+import Book from '../models/book';
+import auth from '../middleware/auth';
 
 const patchBookReview = async (req, res) => {
   try {
@@ -17,6 +17,6 @@ const patchBookReview = async (req, res) => {
 };
 
 const patchBookReviewRoute = express.Router();
-patchBookReviewRoute.patch("/patchBookReview", auth, patchBookReview);
+patchBookReviewRoute.patch('/patchBookReview', auth, patchBookReview);
 
-module.exports = patchBookReviewRoute;
+export default patchBookReviewRoute;

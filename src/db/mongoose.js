@@ -1,6 +1,6 @@
-const mongoose = require('mongoose'),
-{dbAdmin, dbPassword} = require('../../config/config'),
-connectionURI = `mongodb+srv://${dbAdmin}:${dbPassword}@mflix-d4hz2.mongodb.net/test?retryWrites=true`;
+import mongoose from 'mongoose';
+import { dbAdmin, dbPassword } from '../../config/config';
+const connectionURI = `mongodb+srv://${dbAdmin}:${dbPassword}@mflix-d4hz2.mongodb.net/test?retryWrites=true`;
 
 mongoose.connect(connectionURI, {
     useNewUrlParser: true,

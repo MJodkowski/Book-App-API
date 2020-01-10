@@ -1,6 +1,6 @@
-const express = require("express"),
-  Book = require("../models/book"),
-  auth = require("../middleware/auth");
+import auth from '../middleware/auth';
+import express from 'express';
+import Book from '../models/book';
 
 const getBookReviews = async (req, res) => {
   try {
@@ -13,6 +13,6 @@ const getBookReviews = async (req, res) => {
 };
 
 const getBookReviewsRoute = express.Router();
-getBookReviewsRoute.get("/getBookReviews", auth, getBookReviews);
+getBookReviewsRoute.get('/getBookReviews', auth, getBookReviews);
 
-module.exports = getBookReviewsRoute;
+export default getBookReviewsRoute;

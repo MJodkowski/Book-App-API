@@ -1,14 +1,14 @@
-const mongoose = require("mongoose"),
-  bcrypt = require("bcrypt"),
-  jwt = require("jsonwebtoken"),
-  { jwtKey } = require("../../config/config"),
-  validator = require("validator");
+import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import { jwtKey } from '../../config/config';
+import validator from 'validator';
 
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
   },
   email: {
     type: String,
@@ -17,24 +17,24 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     validate(value) {
       if (!validator.isEmail(value)) {
-        throw new Error("Invalid email address");
+        throw new Error('Invalid email address');
       }
-    }
+    },
   },
   password: {
     type: String,
     required: true,
     trim: true,
-    minlength: 6
+    minlength: 6,
   },
   tokens: [
     {
       token: {
         type: String,
-        required: true
-      }
-    }
-  ]
+        required: true,
+      },
+    },
+  ],
 });
 
 userSchema.methods.toJSON = function() {
@@ -45,7 +45,7 @@ userSchema.methods.toJSON = function() {
 };
 
 userSchema.methods.generateToken = async function() {
-  const token = jwt.sign({ _id: this._id }, jwtKey, { expiresIn: "2h" });
+  const token = jwt.sign({ _id: this._id }, jwtKey, { expiresIn: '2h' });
   this.tokens.push({ token });
   await this.save();
   return token;
@@ -61,14 +61,14 @@ userSchema.statics.findAndVerify = async (name, password) => {
   }
 };
 
-userSchema.pre("save", async function(next) {
-  if (this.isModified("password")) {
+userSchema.pre('save', async function(next) {
+  if (this.isModified('password')) {
     const SALT = 10;
     this.password = await bcrypt.hash(this.password, SALT);
   }
   next();
 });
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model('User', userSchema);
 
-module.exports = User;
+export default User;

@@ -1,5 +1,5 @@
-const express = require("express"),
-  auth = require("../middleware/auth");
+import express from 'express';
+import auth from '../middleware/auth';
 
 const logoutCurrentUserSession = async (req, res) => {
   try {
@@ -15,9 +15,9 @@ const logoutCurrentUserSession = async (req, res) => {
 
 const logoutCurrentUserSessionRoute = express.Router();
 logoutCurrentUserSessionRoute.post(
-  "/logoutCurrentUserSession",
+  '/logoutCurrentUserSession',
   auth,
   logoutCurrentUserSession
 );
 
-module.exports = logoutCurrentUserSessionRoute;
+export default logoutCurrentUserSessionRoute;

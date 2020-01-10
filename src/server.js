@@ -1,21 +1,21 @@
-const express = require("express"),
-  cookieParser = require("cookie-parser"),
-  cors = require("cors"),
-  { CORS_WHITELIST } = require("./utils/constants"),
-  getBookListRoute = require("./routes/getBookList"),
-  postBookReview = require("./routes/postBookReview"),
-  getBookReviews = require("./routes/getBookReviews"),
-  patchBookReview = require("./routes/patchBookReview"),
-  loginUser = require("./routes/loginUser"),
-  logOutCurrentUserSession = require("./routes/logoutCurrentUserSession"),
-  registerUser = require("./routes/registerUser"),
-  authenticateUser = require("./routes/authenticateUser"),
-  logoutAllUserSessions = require("./routes/logoutAllUserSessions");
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
+import { CORS_WHITELIST } from './utils/constants';
+import getBookListRoute from './routes/getBookList';
+import postBookReview from './routes/postBookReview';
+import getBookReviews from './routes/getBookReviews';
+import patchBookReview from './routes/patchBookReview';
+import loginUser from './routes/loginUser';
+import logOutCurrentUserSession from './routes/logoutCurrentUserSession';
+import registerUser from './routes/registerUser';
+import authenticateUser from './routes/authenticateUser';
+import logoutAllUserSessions from './routes/logoutAllUserSessions';
 
 class Server {
   constructor() {
     this.app = express();
-    require("./db/mongoose");
+    require('./db/mongoose');
     this.app.use(cors(this.corsOptions));
     this.app.use(express.urlencoded());
     this.app.use(express.json());
@@ -35,11 +35,11 @@ class Server {
       if (CORS_WHITELIST.indexOf(origin) !== -1) {
         callback(null, true);
       } else {
-        callback(new Error("Not allowed by CORS"));
+        callback(new Error('Not allowed by CORS'));
       }
     },
     credentials: true,
-    methods: ["GET", "PUT", "POST", "PATCH"]
+    methods: ['GET', 'PUT', 'POST', 'PATCH'],
   };
 
   registerRoutes() {

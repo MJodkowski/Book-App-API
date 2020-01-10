@@ -1,6 +1,6 @@
-const express = require("express"),
-  Book = require("../models/book"),
-  auth = require("../middleware/auth");
+import express from 'express';
+import Book from '../models/book';
+import auth from '../middleware/auth';
 
 const postBookReview = async (req, res) => {
   try {
@@ -8,7 +8,7 @@ const postBookReview = async (req, res) => {
     book.reviews.push({
       author: req.body.author,
       rating: req.body.rating,
-      contents: req.body.contents
+      contents: req.body.contents,
     });
     await book.save();
     res.send(book);
@@ -19,6 +19,6 @@ const postBookReview = async (req, res) => {
 };
 
 const postBookReviewRoute = express.Router();
-postBookReviewRoute.post("/postBookReview", auth, postBookReview);
+postBookReviewRoute.post('/postBookReview', auth, postBookReview);
 
-module.exports = postBookReviewRoute;
+export default postBookReviewRoute;
