@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const Book = mongoose.model('Book', {
     isbn: {
@@ -26,4 +26,4 @@ const Book = mongoose.model('Book', {
         }]
 });
 
-module.exports = Book;
+export default Book;
