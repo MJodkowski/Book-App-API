@@ -3,6 +3,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { CORS_WHITELIST } from './utils/constants';
 import getBookListRoute from './routes/getBookList';
+import getAuthorListRoute from './routes/getAuthorList';
 import postBookReview from './routes/postBookReview';
 import getBookReviews from './routes/getBookReviews';
 import patchBookReview from './routes/patchBookReview';
@@ -44,6 +45,7 @@ class Server {
 
   registerRoutes() {
     this.app.use(getBookListRoute);
+    this.app.use(getAuthorListRoute);
     this.app.use(postBookReview);
     this.app.use(getBookReviews);
     this.app.use(patchBookReview);
