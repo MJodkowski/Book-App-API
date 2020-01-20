@@ -17,7 +17,7 @@ const getAuthorList = async (req, res) => {
             },
           },
           { $sort: { _id: 1 } },
-          { $skip: (parseInt(currentPage) - 1) * 10 },
+          { $skip: (parseInt(currentPage) - 1) * perPage },
           { $limit: parseInt(perPage) },
         ],
         totalCount: [

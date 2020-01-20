@@ -12,7 +12,7 @@ const getBookList = async (req, res) => {
           'data': [
             { '$match': { [field]: new RegExp(query, 'i') }},
             { '$sort': { [field]: 1 } },
-            { '$skip': (parseInt(currentPage) - 1) * 10 },
+            { '$skip': (parseInt(currentPage) - 1) * perPage },
             { '$limit': parseInt(perPage) },
           ],
           'totalCount': [
