@@ -6,7 +6,6 @@ const getBookList = async (req, res) => {
   const { field, query, currentPage, perPage } = req.query;
   try {
     res.send(
-      // await Book.find({ [req.query.field]: new RegExp(req.query.query, 'i') }).sort(req.query.field).skip(0).limit(10)
       await Book.aggregate([
         { '$facet': {
           'data': [

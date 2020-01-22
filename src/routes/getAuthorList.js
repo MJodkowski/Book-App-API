@@ -11,8 +11,9 @@ const getAuthorList = async (req, res) => {
           { $match: { author: new RegExp(query, 'i') } },
           {
             $group: {
-              _id: {
-                author: '$author',
+              _id: '$author',
+              books: {
+                $addToSet: '$$ROOT',
               },
             },
           },
@@ -27,18 +28,8 @@ const getAuthorList = async (req, res) => {
       },
     },
   ]);
-  const authorList = [...authors[0].data ];
-  const authorBookList = await Promise.all(authorList.map(async authr => {
-    const { _id: { author } } = authr;
-    return {
-      name: author,
-      books: await Book.find({ 'author': author })
-    }
-  }));
   try {
-    res.send({
-    data: [...authorBookList],
-    totalCount: authors[0].totalCount[0].count });
+    res.send(authors[0]);
   } catch (err) {
     console.error(err);
     res.status(500).send();
