@@ -20,6 +20,13 @@ const getAuthorList = async (req, res) => {
           { $sort: { _id: 1 } },
           { $skip: (parseInt(currentPage) - 1) * perPage },
           { $limit: parseInt(perPage) },
+          {
+            $project: {
+              _id: 0,
+              name: '$_id',
+              books: 1,
+            },
+          },
         ],
         totalCount: [
           { $match: { author: new RegExp(query, 'i') } },
